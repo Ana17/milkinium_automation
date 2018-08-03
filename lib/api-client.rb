@@ -23,6 +23,7 @@ class ApiClient
   end
 
   def create_user(user_info_hash)
+    # you cannot create 2 users with same email
     json_payload = user_info_hash.to_json
 
     headers = {

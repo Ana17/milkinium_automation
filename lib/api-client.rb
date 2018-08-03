@@ -1,10 +1,31 @@
 require 'rest-client'
-class LinkClient
+class ApiClient
 
-  def create_marketing_link(param1)
+  def initialize(email, password)
+    @token = authenticate(email, password)
+  end
+
+  def authenticate(email, password)
     data_hash = {
-        id: '0',
-        email: 'nasyrova.ana@gmail.com',
+      email: email,
+      password: password
+    }
+    json_payload = data_hash.to_json
+
+    headers = {
+      content_type: 'application/json',
+    }
+
+    response = RestClient.post "https://milkinium-api.herokuapp.com/v1/authenticate", json_payload, headers=headers
+    response_hash = JSON.parse(response.body)
+    token = response_hash['token']
+    return token
+  end
+
+  def create_user()
+    data_hash = {
+        # you cannot create 2 users with same email
+        email: 'nasyrova.ana@gmail.com1',
         password: 'test_password',
         avatar: 'banana',
         name: {
@@ -13,19 +34,16 @@ class LinkClient
         },
         role: 'client'
     }
-
     json_payload = data_hash.to_json
 
-    variable = RestClient.post 'https://api.branch.io/v1/url', json_payload, :content_type => 'application/json'
+    headers = {
+      content_type: 'application/json',
+      authorization: @token 
+    }
 
-    hash = JSON.parse(variable.body)
-    api_link = hash['url']
-
-    return api_link
-  end
-
-  def click_link(api_link)
-    RestClient.get api_link, {:user_agent => "Mozilla/5.0 (Linux; Android 6.0.1; SM-G920V Build/MMB29K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/52.0.2743.98 Mobile Safari/537.36"}
+    response = RestClient.post "https://milkinium-api.herokuapp.com/v1/users", json_payload, headers=headers
+    response_hash = JSON.parse(response.body)
+    return response_hash
   end
 
 end

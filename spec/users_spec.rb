@@ -6,8 +6,9 @@ describe 'Testing Users APIs:' do
         api_client_obj_0 = ApiClient.new('nasyrova.ana@gmail.com','test_password')
 
         # create new user
+        random_email = Time.now.strftime("%Y%m%d_%H%M%S")
+        binding.pry
         user_info_hash = {
-            # you cannot create 2 users with same email
             email: 'culala@gmail.com',
             password: 'test_password',
             avatar: 'banana',

@@ -22,19 +22,8 @@ class ApiClient
     return token
   end
 
-  def create_user()
-    data_hash = {
-        # you cannot create 2 users with same email
-        email: 'nasyrova.ana@gmail.com1',
-        password: 'test_password',
-        avatar: 'banana',
-        name: {
-          first: 'Ana',
-          last: 'Banana'
-        },
-        role: 'client'
-    }
-    json_payload = data_hash.to_json
+  def create_user(user_info_hash)
+    json_payload = user_info_hash.to_json
 
     headers = {
       content_type: 'application/json',

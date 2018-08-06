@@ -7,9 +7,9 @@ describe 'Testing Users APIs:' do
 
         # create new user
         random_email = Time.now.strftime("%Y%m%d_%H%M%S")
-        binding.pry
+  
         user_info_hash = {
-            email: 'culala@gmail.com',
+            email: 'culala6@gmail.com',
             password: 'test_password',
             avatar: 'banana',
             name: {
@@ -18,7 +18,8 @@ describe 'Testing Users APIs:' do
             },
             role: 'client'
         } 
-        user_info = api_client_obj_0.create_user(user_info_hash)
-        puts user_info
+        created_user_info = api_client_obj_0.create_user(user_info_hash)
+        # created_user_info_hash = JSON.parse(created_user_info.body)
+        puts created_user_info
     end
 end

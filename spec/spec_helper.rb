@@ -6,6 +6,7 @@ require 'page-object/page_factory'
 require 'page-object/elements'
 require 'pry'
 require 'waitutil'
+require 'faker'
 require_all 'lib'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

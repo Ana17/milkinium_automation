@@ -18,11 +18,12 @@ describe 'Testing Users APIs:' do
             role: 'client'
         } 
         created_user_info_hash = api_client_obj_0.create_user(user_info_hash)
+        created_user_info_hash = created_user_info_hash.deep_symbolize_keys
         
         # expect server to return user info
-        # expected_hash = user_info_hash.delete("password") # copy user_info_hash
-        # binding.pry
-        expected_returned_user_info = {"role"=>"client", "email"=>random_email, "name"=>{"first"=>"Ana", "last"=>"Banana"}}
-        expect(created_user_info_hash).to include(expected_returned_user_info)
+        expected_hash = user_info_hash.except(:password)
+        expect(created_user_info_hash).to include(expected_hash)
+
+        # get a user by id
     end
 end

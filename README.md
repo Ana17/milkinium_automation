@@ -4,4 +4,6 @@ https://docs.google.com/spreadsheets/d/1fupWojgFwVcdzjp6FXdMm4BJlCizxpXcRVNwW85A
 
 ***To exec tests:***
 `bundle install`
+
+
 `bundle exec rspec spec/users_spec.rb`

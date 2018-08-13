@@ -17,13 +17,13 @@ RSpec.configure do |config|
   end
 
   # --- added this stuff for browser ---
-  config.before(:each) do |example|
-    @browser = Selenium::WebDriver.for(:chrome)
-  end
+  # config.before(:each) do |example|
+  #   @browser = Selenium::WebDriver.for(:chrome)
+  # end
 
-  config.after(:each) do |example|
-    @browser.quit
-  end
+  # config.after(:each) do |example|
+  #   @browser.quit
+  # end
   # --- end ---
 
   config.mock_with :rspec do |mocks|

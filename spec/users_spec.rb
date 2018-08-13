@@ -22,8 +22,12 @@ describe 'Testing Users APIs:' do
         
         # expect server to return user info
         expected_hash = user_info_hash.except(:password)
-        expect(created_user_info_hash).to include(expected_hash)
 
+        expect(created_user_info_hash.except(:id)).to eq(expected_hash)
+        expect(created_user_info_hash[:id]).not_to be_empty
+        expect(created_user_info_hash[:id]).to be_kind_of(String)
+        
         # get a user by id
+        
     end
 end

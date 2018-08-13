@@ -5,6 +5,7 @@ class ApiClient
     @token = authenticate(email, password)
   end
 
+  # authenticate endpoint
   def authenticate(email, password)
     data_hash = {
       email: email,
@@ -22,6 +23,7 @@ class ApiClient
     return token
   end
 
+  # create user endpoint
   def create_user(user_info_hash)
     json_payload = user_info_hash.to_json
 
@@ -31,6 +33,19 @@ class ApiClient
     }
 
     response = RestClient.post "https://milkinium-api.herokuapp.com/v1/users", json_payload, headers=headers
+    response_hash = JSON.parse(response.body)
+    return response_hash
+  end
+
+  # get user by id endpoint
+  def get_user_by_id(user_id)
+
+    headers = {
+      content_type: 'application/json',
+      authorization: @token 
+    }
+
+    response = RestClient.get "https://milkinium-api.herokuapp.com/v1/users/#{user_id}", headers=headers
     response_hash = JSON.parse(response.body)
     return response_hash
   end

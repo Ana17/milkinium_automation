@@ -27,11 +27,13 @@ describe 'Testing Users APIs:' do
         expect(created_user_info_hash[:id]).not_to be_empty
         expect(created_user_info_hash[:id]).to be_kind_of(String)
 
-        # get a user by id
+        # get a user by id & verify it matches the user we created via create new user endpoint
         user_from_get_user_endpoint = api_client_obj_0.get_user_by_id(created_user_info_hash[:id])
         user_from_get_user_endpoint = user_from_get_user_endpoint.deep_symbolize_keys
        
         expected_user_id = created_user_info_hash[:id]
-        expect(user_from_get_user_endpoint[:id]).to eq(expected_user_id)
+        expected_user = user_info_hash.deep_symbolize_keys.merge!(id: expected_user_id).except(:password)
+ 
+        expect(user_from_get_user_endpoint).to eq(expected_user)
     end
 end

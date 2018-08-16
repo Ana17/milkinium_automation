@@ -43,7 +43,7 @@ describe 'Testing Users APIs:' do
     end
     
     def random_user_info_hash
-        random_email = Time.now.strftime("#{Faker::Hipster.word}_%Y_%m_%d_%H_%M_%S@gmail.com")
+        random_email = Time.now.strftime("#{Faker::Hipster.word.downcase}_%Y_%m_%d_%H_%M_%S@gmail.com")
         user_info_hash = {
             email: random_email,
             password: 'test_password',

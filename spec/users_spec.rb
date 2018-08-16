@@ -37,8 +37,13 @@ describe 'Testing Users APIs:' do
         created_user2_info_hash = api_client_obj_0.create_user(user2_info).deep_symbolize_keys
 
         # get all users & verify 2 newly created uesrs are among them
-        get_all_users_response_code = api_client_obj_0.get_all_users
-        expect(get_all_users_response_code).to eq "200"
+        get_all_users = api_client_obj_0.get_all_users
+        expect(get_all_users[:code]).to eq "200"
+
+        get_all_users[:body].each do |i|
+            binding.pry
+        end
+
 
     end
     

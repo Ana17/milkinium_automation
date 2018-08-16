@@ -56,8 +56,12 @@ class ApiClient
       authorization: @token 
     }
     response = RestClient.get "https://milkinium-api.herokuapp.com/v1/users", headers=headers
+
     response_code = response.code.to_s
-    return response_code
+    response_body_hash = JSON.parse(response.body)
+
+    response_hash = {:code => response_code, :body => response_body_hash}
+    return response_hash
   end
 
 end

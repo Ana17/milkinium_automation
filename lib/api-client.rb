@@ -50,4 +50,14 @@ class ApiClient
     return response_hash
   end
 
+  def get_all_users
+    headers = {
+      content_type: 'application/json',
+      authorization: @token 
+    }
+    response = RestClient.get "https://milkinium-api.herokuapp.com/v1/users", headers=headers
+    response_hash = JSON.parse(response.body)
+    return response_hash
+  end
+
 end

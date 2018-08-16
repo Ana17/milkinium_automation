@@ -30,8 +30,15 @@ describe 'Testing Users APIs:' do
         api_client_obj_0 = ApiClient.new('nasyrova.ana@gmail.com','test_password')
 
         # create 2 users
-        created_user1_info_hash = api_client_obj_0.create_user(random_user_info_hash).deep_symbolize_keys
-        created_user2_info_hash = api_client_obj_0.create_user(random_user_info_hash).deep_symbolize_keys
+        user1_info = random_user_info_hash
+        user2_info = random_user_info_hash
+
+        created_user1_info_hash = api_client_obj_0.create_user(user1_info).deep_symbolize_keys
+        created_user2_info_hash = api_client_obj_0.create_user(user2_info).deep_symbolize_keys
+
+        # get all users & verify 2 newly created uesrs are among them
+        get_all_users_response_code = api_client_obj_0.get_all_users
+        expect(get_all_users_response_code).to eq "200"
 
     end
     

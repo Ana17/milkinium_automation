@@ -20,7 +20,9 @@ describe 'Testing Users APIs:' do
         user_from_get_user_endpoint = api_client_obj_0.get_user_by_id(created_user_info_hash[:id]).deep_symbolize_keys
        
         expected_user_id = created_user_info_hash[:id]
-        expect(user_from_get_user_endpoint[:id]).to eq(expected_user_id)
+        expected_user = user_info_hash.deep_symbolize_keys.merge!(id: expected_user_id).except(:password)
+ 
+        expect(user_from_get_user_endpoint).to eq(expected_user)
     end
 
     it 'create 2 users + get them by id + get all users' do
